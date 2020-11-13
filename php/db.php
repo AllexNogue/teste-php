@@ -54,6 +54,24 @@ class db {
 
     }
 
+    public function pure($sql)
+    {
+        $conn = $this->connect();
+        
+        $result = $conn->query($sql);
+        $data = [];
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                $data[] = $row;
+            }
+            return json_encode($data);
+        } else {
+            return json_encode([]);
+        }
+        
+
+    }
+
 
     /**
      * Metodo retorna sempre 1 linha da consulta

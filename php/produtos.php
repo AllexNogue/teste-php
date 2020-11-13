@@ -7,10 +7,33 @@ class Produtos {
     /**
      * Função responsavel por retonar os produtos cadastrados
      */
-    public function getProd()
+    public function getProd($filtro = null, $valor = null)
     {
         $db = new db();
-        $result = $db->select('produtos');
+        $sql = 'SELECT p.*, pr.preco FROM produtos p INNER JOIN precos pr ON pr.id_prod = p.id';
+        if(!is_null($filtro)){
+            switch($filtro){
+                case 'nome':
+                    $sql .= ' WHERE p.nome LIKE "%'.$valor.'%"';
+                break;
+                case 'cor':
+                    $sql .= ' WHERE p.cor LIKE "%'.$valor.'%"';
+                break;
+                case 'preco1':
+                    $sql .= ' WHERE pr.preco > "'. $valor .'"';
+                break;
+                case 'preco2':
+                     $sql .= ' WHERE pr.preco < "'. $valor .'"';
+                break;
+                case 'preco3':
+                     $sql .= ' WHERE pr.preco = "'. $valor .'"';
+                break;
+            }            
+        }else{
+           
+        }
+
+        $result = $db->pure($sql);
         
         return $result;
     }
@@ -51,7 +74,7 @@ class Produtos {
         // var_dump($id, $data);
         $db = new db();
         $valor = $data['preco'];
-        unset($data['preco']); // removemos o preço do array por que o mesmo é alterado em uma tabela separada;
+        unset($data['preco'], $data['cor']); // removemos o preço do array por que o mesmo é alterado em uma tabela separada;
 
         $result = $db->update($id, 'produtos', $data);
 

@@ -19,7 +19,11 @@ switch($_POST['action']){
     case 'select': 
         $produtos = new Produtos();
         header('Content-Type: application/json');
-        echo $produtos->getProd();
+        if(isset($_POST['filtro'])){
+            echo $produtos->getProd($_POST['filtro'], $_POST['valor']);
+        }else{
+            echo $produtos->getProd();
+        }
 
     break;
 

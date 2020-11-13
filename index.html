@@ -15,14 +15,63 @@
     </div>
 
     <div class="row">
-        <div class="column middle" style="background-color:#bbb;">Listagem</div>
-        <div class="column side" style="background-color:#ccc;">
-            <h5>Adicionar Produto</h5>
+        <div class="column middle" style="background-color:#bbb;">
+            <h5>Listagem</h5>
+            <form action="" method="GET">
+                <div class="row">
+                    <div class="column side" >
+                        <label for="filtro">Filtra por:</label>
+                        <select id="filtro">
+                            <option value="nome">Nome</option>
+                            <option value="cor">Cor</option>
+                            <option value="preco1">Preco Maior</option>
+                            <option value="preco2">Preco Menor</option>
+                            <option value="preco3">Preco Igual</option>
+                        </select>
+                    </div>
+                    <div class="column side" >
+                        <label for="valorFiltro">Valor:</label>
+                        <input type="text" id="valorFiltro">
+                    </div>
+                    <div class="column side" >
+                        <button type="button" id="btnFilter" class="btnForm2 mt-5">Filtrar</button>
+                        <button type="button" id="btnClear" class="btnForm2 btn2 mt-5">Limpar</button>
+                    </div>
+
+
+                </div>
+                
+            </form>
             <hr class="mb-5">
-            <label for="name">Nome</label>
-            <input type="text" id="name" value="">
-            <label for="color">Cor</label>
-            <select id="color">
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Nome</th>
+                        <th>Cor</th>
+                        <th>Preço</th>
+                        <th>Desconto</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody id="listagem"></tbody>
+
+                
+                
+              </table>
+
+        </div>
+        <div class="column side" style="background-color:#ccc;">
+            <h5 id="titleSection">Adicionar Produto</h5>
+            <hr class="mb-5">
+            <input type="hidden" id="idProd" value="0">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" value="">
+            <label for="preco">Preço</label>
+            <input type="text" id="preco" value="">
+            <label for="cor" id="corLabel">Cor</label>
+            <select id="cor">
                 <option value="vermelho">Vermelho</option>
                 <option value="amarelo">Amarelo</option>
                 <option value="azul">Azul</option>
@@ -30,6 +79,7 @@
 
             <button type="button" class="btnForm" id="btnInsert">Adicionar</button>
             <button type="button" class="btnForm" id="btnUpdate" style="display: none;">Alterar</button>
+            <button type="button" class="btnForm btn2" id="btnCancel" style="display: none;">Cancelar</button>
         </div>
     </div>
 
@@ -40,6 +90,6 @@
 
     
     <script src="assets/js/jquery.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script src="assets/js/main.js?v=34123"></script>
 </body>
 </html>

@@ -22,7 +22,6 @@ body {
 
 .column {
     padding: 10px;
-    height: 300px;
 }
 
 .column.side {
@@ -70,12 +69,61 @@ input[type=text], select {
     border-radius: 4px;
     cursor: pointer;
   }
-  
- .btnForm:hover {
-    background-color: #45a049;
+
+  .btnForm2 {
+    width: 45%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
   }
 
 
+  .btn {
+    color:#000;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .btn1 {
+    color:#fff !important;
+    background-color: rgb(255, 195, 65)  !important;
+    
+  }
+
+  .btn2 {
+    color:#fff  !important;
+    background-color: red  !important;
+  }
+  
+ /* .btnForm:hover {
+    background-color: #45a049;
+  } */
+
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+
   .mb-5{
       margin-bottom: 15px;
+  }
+  .mt-5{
+      margin-top: 25px;
   }
