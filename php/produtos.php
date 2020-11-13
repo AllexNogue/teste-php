@@ -46,6 +46,42 @@ class Produtos {
         }
     }
 
+    public function alterProd($id, $data)
+    {
+        // var_dump($id, $data);
+        $db = new db();
+        $valor = $data['preco'];
+        unset($data['preco']); // removemos o preço do array por que o mesmo é alterado em uma tabela separada;
+
+        $result = $db->update($id, 'produtos', $data);
+
+        if($result){
+            $db = new db();
+
+            $preco = json_decode($db->getRow('precos', '*', "WHERE id_prod = " . $id), true);
+
+            $alterarPreco = $db->update($preco['id'], 'precos', [
+                'preco' => $valor
+            ]);
+
+            if($alterarPreco){
+                return json_encode(['type' => 'success', 'msg'=> 'Produto alterado.']);
+            }else{
+                return json_encode(['type' => 'error', 'msg'=> 'Falha ao alterar preço do produto.']);
+            }
+
+            
+        }else{
+            return json_encode(['type' => 'error', 'msg'=> 'Falha ao alterar produto.']);
+        }
+
+    }
+
+    public function destroy($id)
+    {
+        
+    }
+
 }
 
 ?>

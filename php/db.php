@@ -53,6 +53,54 @@ class db {
         
 
     }
+
+
+    /**
+     * Metodo retorna sempre 1 linha da consulta
+     */
+    public function getRow($table, $fields = '*', $where = null)
+    {
+        $conn = $this->connect();
+        
+        $sql = "SELECT ". $fields . " FROM " . $table . " " . $where . " LIMIT 1";
+       
+        $result = $conn->query($sql);
+        $data = [];
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                $data = $row;
+            }
+            return json_encode($data);
+        } else {
+            return json_encode([]);
+        }
+    }
+
+    public function update($id, $table, $data)
+    {
+        $conn = $this->connect();
+        $campos_valores = '';
+
+        foreach($data as $coluna => $valor){
+            
+            $campos_valores .= $coluna . ' = "' . $valor . '", ';
+        }
+        $campos_valores = substr($campos_valores, 0, -2);
+        $sql = "UPDATE " .$table. " SET ".$campos_valores."
+        WHERE id = ".$id;
+
+        if ($conn->query($sql) === TRUE) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function delete($id)
+    {
+        # code...
+    }
+
 }
 
 ?>
