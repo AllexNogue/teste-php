@@ -6,11 +6,13 @@ class Produtos {
     
     /**
      * Função responsavel por retonar os produtos cadastrados
+     * Filtro: retorna produtos de acordo com o filtro solicitado
      */
-    public function getProd($filtro = null, $valor = null)
+    public function get($filtro = null, $valor = null)
     {
         $db = new db();
         $sql = 'SELECT p.*, pr.preco FROM produtos p INNER JOIN precos pr ON pr.id_prod = p.id';
+
         if(!is_null($filtro)){
             switch($filtro){
                 case 'nome':
@@ -29,10 +31,8 @@ class Produtos {
                      $sql .= ' WHERE pr.preco = "'. $valor .'"';
                 break;
             }            
-        }else{
-           
         }
-
+        
         $result = $db->pure($sql);
         
         return $result;
@@ -43,7 +43,7 @@ class Produtos {
      * Função responsavel por preparar o produto para a inserção no banco de dados
      * Retorna um json para ser tratado pelo javascript
      */
-    public function setProd($data){
+    public function insert($data){
 
         $preco = $data['preco'];
         unset($data['preco']); // removemos o preço do array por que o mesmo é inserido em uma tabela separada;
@@ -63,17 +63,18 @@ class Produtos {
                 return json_encode(['type' => 'error', 'msg'=> 'Falha ao inserir preço do produto.']);
             }
 
-            
         }else{
             return json_encode(['type' => 'error', 'msg'=> 'Falha ao inserir produto.']);
         }
     }
 
-    public function alterProd($id, $data)
+    
+    public function alter($id, $data)
     {
-        // var_dump($id, $data);
         $db = new db();
         $valor = $data['preco'];
+
+        //Por garantia removemos a cor.
         unset($data['preco'], $data['cor']); // removemos o preço do array por que o mesmo é alterado em uma tabela separada;
 
         $result = $db->update($id, 'produtos', $data);
@@ -100,6 +101,10 @@ class Produtos {
 
     }
 
+    /**
+     * Função para deletar o produto
+     * 
+     */
     public function destroy($id)
     {
         $db = new db();

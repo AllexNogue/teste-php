@@ -2,9 +2,13 @@
 
 require 'produtos.php';
 
+
+/**
+ * Separa qual ação será feita e preapara os dados
+ */
+
 switch($_POST['action']){
     case 'insert':
-
         $data = [
             'nome' => $_POST['nome'],
             'cor' => $_POST['cor'],
@@ -13,16 +17,16 @@ switch($_POST['action']){
 
         $produtos = new Produtos();
         header('Content-Type: application/json');
-        echo $produtos->setProd($data);
+        echo $produtos->insert($data);
 
     break;
     case 'select': 
         $produtos = new Produtos();
         header('Content-Type: application/json');
         if(isset($_POST['filtro'])){
-            echo $produtos->getProd($_POST['filtro'], $_POST['valor']);
+            echo $produtos->get($_POST['filtro'], $_POST['valor']);
         }else{
-            echo $produtos->getProd();
+            echo $produtos->get();
         }
 
     break;
@@ -36,7 +40,7 @@ switch($_POST['action']){
             'preco' => $_POST['preco'],
         ];
         header('Content-Type: application/json');
-        echo $produtos->alterProd($id, $data);
+        echo $produtos->alter($id, $data);
 
     break;
 

@@ -2,6 +2,9 @@
  
 class db {
 
+    /**
+     * Conexão com o banco
+     */
     public function connect()
     {
         
@@ -17,6 +20,9 @@ class db {
 
     }
 
+    /**
+     * Método para inserção
+     */
     public function insert($table, $data){
 
         $conn = $this->connect();
@@ -34,6 +40,9 @@ class db {
 
     }
 
+    /**
+     * Método para busca
+     */
     public function select($table, $fields = '*', $where = null)
     {
         $conn = $this->connect();
@@ -54,6 +63,9 @@ class db {
 
     }
 
+    /**
+     * Método para executar SQL puro
+     */
     public function pure($sql)
     {
         $conn = $this->connect();
@@ -72,9 +84,8 @@ class db {
 
     }
 
-
     /**
-     * Metodo retorna sempre 1 linha da consulta
+     * Método retorna sempre 1 linha da consulta
      */
     public function getRow($table, $fields = '*', $where = null)
     {
@@ -94,6 +105,9 @@ class db {
         }
     }
 
+    /**
+     * Método para atualização
+     */
     public function update($id, $table, $data)
     {
         $conn = $this->connect();
@@ -114,6 +128,9 @@ class db {
         }
     }
 
+    /**
+     * Método para remoção
+     */
     public function delete($id, $table)
     {
         $conn = $this->connect();

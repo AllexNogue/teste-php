@@ -1,9 +1,9 @@
 <?php
 
 $config = [
-    'db_host' => 'localhost',
-    'db_name' => 'teste',
-    'db_user' => 'root',
+    'db_host' => '',
+    'db_name' => '',
+    'db_user' => '',
     'db_pass' => ''
 ];
 

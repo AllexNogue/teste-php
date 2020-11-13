@@ -1,27 +1,23 @@
 $(document).ready(function(){
-    
+    //realiza a filtragem
     $('#btnFilter').on('click', function(){
-        console.log('aaaaaaaaaaa')
         loadProd(true)
     });
 
+    //limpa o formulario de filtro e reseta a listagem
     $('#btnClear').on('click', function(){
         $('#valorFiltro').val('')
         loadProd()
     })
 
-    //Prepara a listagem dos produtos
+    //Faz a listagem dos produtos
     function loadProd(filtro = false){
-
-        console.log(filtro)
-
         var form = new FormData();
         form.append("action", "select");
 
         if(filtro){
             form.append("filtro", $('#filtro').val());
             form.append("valor", $('#valorFiltro').val());
-
         }
         
         var settings = {
@@ -53,10 +49,6 @@ $(document).ready(function(){
                                 <button class="btn btn2 btnDelete" data-id="'+item.id+'" type="button">Deletar</button></td>\
                             </tr>';
                 $('#listagem').append(html);
-
-                
-
-                // console.log(item);
             })
 
             $('.btnUpdate').on('click', function(){
@@ -95,7 +87,7 @@ $(document).ready(function(){
         }
     }
 
-    //realiza a chamada ajax apra a inserção
+    //realiza a inserção do produto
     function insertProd(){
         var form = new FormData();
         form.append("action", "insert");
@@ -128,7 +120,8 @@ $(document).ready(function(){
 
     $('#btnInsert').on('click', insertProd);
 
-    window.editProd = function(id, nome, preco){
+    //Carrega a visualização para a edição do produto
+    function editProd(id, nome, preco){
         $('#idProd').val(id);
         $('#nome').val(nome);
         $('#preco').val(preco);
@@ -140,29 +133,9 @@ $(document).ready(function(){
         $('#corLabel').css('display', 'none');
         $('#btnUpdate').css('display', 'block');
         $('#btnCancel').css('display', 'block');
-
-        console.log(id, nome, preco)
     }
 
-    $('#btnCancel').on('click', function(){
-       resetForm()
-    });
-
-    function resetForm(){
-        $('#idProd').val('');
-        $('#nome').val('');
-        $('#preco').val('');
-
-        $('#titleSection').html('Adicionar Produto');
-
-        $('#btnInsert').css('display', 'block');
-        $('#cor').css('display', 'block');
-        $('#corLabel').css('display', 'block');
-        $('#btnUpdate').css('display', 'none');
-        $('#btnCancel').css('display', 'none');
-    }
-
-
+    //atualizar um produto
     function updateProd(){
         var form = new FormData();
         form.append("action", "update");
@@ -193,7 +166,7 @@ $(document).ready(function(){
 
     $('#btnUpdate').on('click', updateProd)
     
-
+    //remove um produto
     function deleteProd(id){
         var form = new FormData();
         form.append("action", "delete");
@@ -220,6 +193,25 @@ $(document).ready(function(){
         });
     }
 
+
+    //limpa e reseta o formulario
+    function resetForm(){
+        $('#idProd').val('');
+        $('#nome').val('');
+        $('#preco').val('');
+
+        $('#titleSection').html('Adicionar Produto');
+
+        $('#btnInsert').css('display', 'block');
+        $('#cor').css('display', 'block');
+        $('#corLabel').css('display', 'block');
+        $('#btnUpdate').css('display', 'none');
+        $('#btnCancel').css('display', 'none');
+    }
+
+    $('#btnCancel').on('click', function(){
+        resetForm()
+    });
     
 
 })
