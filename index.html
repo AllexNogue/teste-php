@@ -5,8 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teste PHP</title>
     <link rel="stylesheet" href="assets/css/style.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
+
+    <div class="header">
+    <h2>Teste PHP</h2>
+    </div>
+
+    <div class="row">
+        <div class="column middle" style="background-color:#bbb;">Listagem</div>
+        <div class="column side" style="background-color:#ccc;">
+            <h5>Adicionar Produto</h5>
+            <hr class="mb-5">
+            <label for="name">Nome</label>
+            <input type="text" id="name" value="">
+            <label for="color">Cor</label>
+            <select id="color">
+                <option value="vermelho">Vermelho</option>
+                <option value="amarelo">Amarelo</option>
+                <option value="azul">Azul</option>
+            </select>
+
+            <button type="button" class="btnForm" id="btnInsert">Adicionar</button>
+            <button type="button" class="btnForm" id="btnUpdate" style="display: none;">Alterar</button>
+        </div>
+    </div>
+
+    <div class="footer">
+    <p>Por: Alex Nogueira (PHP Developer)</p>
+    </div>
+
+
     
     <script src="assets/js/jquery.js"></script>
     <script src="assets/js/main.js"></script>
