@@ -96,9 +96,17 @@ class db {
         }
     }
 
-    public function delete($id)
+    public function delete($id, $table)
     {
-        # code...
+        $conn = $this->connect();
+        
+        $sql = "DELETE FROM " . $table . " WHERE id = " . $id;
+
+        if ($conn->query($sql) === TRUE) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }

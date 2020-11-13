@@ -79,7 +79,25 @@ class Produtos {
 
     public function destroy($id)
     {
+        $db = new db();
+        $result = $db->delete($id, 'produtos');
         
+        if($result){
+            $db = new db();
+            $preco = json_decode($db->getRow('precos', '*', "WHERE id_prod = " . $id), true);
+
+            $deletarPreco = $db->delete($preco['id'], 'precos');
+
+            if($deletarPreco){
+                return json_encode(['type' => 'success', 'msg'=> 'Produto removido.']);
+            }else{
+                return json_encode(['type' => 'error', 'msg'=> 'Falha ao remover preço do produto.']);
+            }
+
+            
+        }else{
+            return json_encode(['type' => 'error', 'msg'=> 'Falha ao remover produto.']);
+        }
     }
 
 }

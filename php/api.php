@@ -31,8 +31,16 @@ switch($_POST['action']){
             'cor' => $_POST['cor'],
             'preco' => $_POST['preco'],
         ];
-        // header('Content-Type: application/json');
+        header('Content-Type: application/json');
         echo $produtos->alterProd($id, $data);
+
+    break;
+
+    case 'delete': 
+        $produtos = new Produtos();
+        $id = $_POST['id'];
+        header('Content-Type: application/json');
+        echo $produtos->destroy($id);
 
     break;
 
